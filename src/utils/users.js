@@ -2,7 +2,7 @@ const users = []
 
 const addUser = ({ id, username, room }) => {
     username = username.trim().toLowerCase()
-    room = room.trim().toLowerCase()
+    // room = room.trim().toLowerCase()
 
     if(!username || !room){
         return {
@@ -43,10 +43,21 @@ const getUsersInRoom = (room) => {
     })
     return usersMatch
 }
+const getRooms = () => {
+   let rooms = []
+    users.forEach((user)=>{
+        rooms.push(user.room)
+    })
+    rooms = rooms.filter((room, index) => {
+        return rooms.indexOf(room) === index
+    })
+    return rooms
+}
 
 module.exports = {
     addUser,
     removeUser,
     getUser,
-    getUsersInRoom
+    getUsersInRoom,
+    getRooms
 }
